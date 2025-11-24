@@ -1,12 +1,12 @@
 #envelope {
   position: relative;
-  width: 400px;
-  height: 260px;
+  width: 800px;
+  height: 500px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 500px;
+  margin-top: 400px;
   margin-bottom: 50px;
   top: 0;
   background-color: #d9534f;
@@ -22,11 +22,11 @@
 }
 
 .flap {
-  border-left: 200px solid transparent;
-  border-right: 200px solid transparent;
-  border-bottom: 116px solid transparent;
+  border-left: 400px solid transparent;
+  border-right: 400px solid transparent;
+  border-bottom: 240px solid transparent;
   /* a little smaller */
-  border-top: 140px solid #d9534f;
+  border-top: 260px solid #d9534f;
   /* Same romantic red */
   /* a little larger */
   transform-origin: top;
@@ -34,12 +34,12 @@
 }
 
 .pocket {
-  border-left: 200px solid #f5a3a2;
+  border-left: 400px solid #f5a3a2;
   /* Soft pinkish red for the pocket */
-  border-right: 200px solid #f5a3a2;
-  border-bottom: 130px solid #ff6f61;
+  border-right: 400px solid #f5a3a2;
+  border-bottom: 260px solid #ff6f61;
   /* Lighter romantic red */
-  border-top: 130px solid transparent;
+  border-top: 260px solid transparent;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
@@ -120,7 +120,7 @@
 }
 
 .open .letter {
-  transform: translateY(-150px);
+  transform: translateY(-300px);
   transition: transform 0.4s 0.6s ease, z-index 0.6s;
   z-index: 2;
 }
@@ -291,9 +291,11 @@ body {
   }
 
   #envelope {
-    transform: scale(0.8);
+    transform: scale(0.4);
     left: 50%;
-    margin-left: -200px;
-    /* Half of width (400px) to center it with left: 50% */
+    margin-left: -400px;
+    /* Half of width (800px) to center it with left: 50% */
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
