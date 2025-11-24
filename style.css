@@ -10,7 +10,6 @@
   margin-bottom: 50px;
   top: 0;
   background-color: #d9534f;
-  /* Warm romantic red */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -25,20 +24,15 @@
   border-left: 400px solid transparent;
   border-right: 400px solid transparent;
   border-bottom: 240px solid transparent;
-  /* a little smaller */
   border-top: 260px solid #d9534f;
-  /* Same romantic red */
-  /* a little larger */
   transform-origin: top;
   pointer-events: none;
 }
 
 .pocket {
   border-left: 400px solid #f5a3a2;
-  /* Soft pinkish red for the pocket */
   border-right: 400px solid #f5a3a2;
   border-bottom: 260px solid #ff6f61;
-  /* Lighter romantic red */
   border-top: 260px solid transparent;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -66,40 +60,50 @@
   right: 0;
 }
 
+/* ----------------------------- */
+/* WORDS FIXED (3× LARGER + PINK BARS SHOW) */
+/* ----------------------------- */
+
 .words {
   position: absolute;
   left: 10%;
   width: 80%;
-  height: 14%;
   background-color: #ffe6e6;
-  /* Light romantic tone */
+  padding: 0.8rem 1rem;
+  /* ensures pink bar stays */
+  height: auto;
+  /* allows text to expand */
+  border-radius: 6px;
 }
 
+/* 0.7rem × 3 = 2.1rem */
 .words.line1 {
   top: 10%;
-  font-size: 0.5rem;
-  width: 20%;
-  height: 7%;
-  font-size: 0.7rem;
+  width: 40%;
+  /* increased so text fits */
+  font-size: 3.1rem;
 }
 
+/* 1.1rem × 3 = 3.3rem */
 .words.line2 {
   top: 30%;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 3.3rem;
 }
 
 .words.line3 {
   top: 50%;
-  font-size: 1.1rem;
   text-align: center;
+  font-size: 3.3rem;
 }
 
 .words.line4 {
   top: 70%;
-  font-size: 1.1rem;
   text-align: center;
+  font-size: 3.3rem;
 }
+
+/* ----------------------------- */
 
 .open .flap {
   transform: rotateX(180deg);
@@ -149,7 +153,6 @@
   width: 50px;
   height: 80px;
   background: #e60073;
-  /* Deep romantic pink */
   border-radius: 50px 50px 0 0;
   transform: rotate(-45deg);
   transform-origin: 0 100%;
@@ -173,10 +176,8 @@
   transform: scale(0.6);
   opacity: 1;
   -webkit-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-  -moz-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-  -webkit-animation-fill-mode: forwards;
+  animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
   animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
 
@@ -185,10 +186,8 @@
   transform: scale(1);
   opacity: 1;
   -webkit-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
-  -moz-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
-  -webkit-animation-fill-mode: forwards;
+  animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
   animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
 
@@ -197,21 +196,9 @@
   transform: scale(0.8);
   opacity: 1;
   -webkit-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
-  -moz-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
-  -webkit-animation-fill-mode: forwards;
+  animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
   animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.7s;
   animation-delay: 0.7s;
-}
-
-@-webkit-keyframes slideUp {
-  0% {
-    top: 0;
-  }
-
-  100% {
-    top: -600px;
-  }
 }
 
 @keyframes slideUp {
@@ -221,16 +208,6 @@
 
   100% {
     top: -600px;
-  }
-}
-
-@-webkit-keyframes sideSway {
-  0% {
-    margin-left: 0px;
-  }
-
-  100% {
-    margin-left: 50px;
   }
 }
 
@@ -246,7 +223,6 @@
 
 body {
   background-color: #f0e6f6;
-  /* Soft lavender for a romantic, dreamy feel */
 }
 
 .envlope-wrapper {
@@ -263,7 +239,6 @@ body {
   font-weight: 800;
   font-style: normal;
   transition: all 0.1s linear;
-  -webkit-appearance: none;
   background-color: transparent;
   border: solid 2px #d9534f;
   border-radius: 4px;
@@ -294,7 +269,6 @@ body {
     transform: scale(0.4);
     left: 50%;
     margin-left: -400px;
-    /* Half of width (800px) to center it with left: 50% */
     margin-top: 0;
     margin-bottom: 0;
   }
