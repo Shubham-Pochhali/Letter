@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>She Said Yes</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(135deg, #ffe9f0, #ffddea);
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            color: #a33357;
+        }
+
+        h1 {
+            font-size: 2.7rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            color: #ff88ad;
+            font-size: 22px;
+            opacity: 0.8;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(1);
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>She said yes! ❤️</h1>
+        <p>You just made me the happiest person today.</p>
+        <p>I promise you… this is just the beginning. 🥺✨</p>
+    </div>
+
+    <script>
+        // Generate floating hearts
+        for (let i = 0; i < 20; i++) {
+            let h = document.createElement("div");
+            h.className = "heart";
+            h.innerText = "❤";
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.animationDelay = Math.random() * 5 + "s";
+            h.style.fontSize = 18 + Math.random() * 16 + "px";
+            document.body.appendChild(h);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Our little secret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="envlope-wrapper">
+    <div id="envelope" class="close">
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
+      <div class="letter">
+        <div class="words line1">To: dear</div>
+        <div class="words line2">cutie.</div>
+        <div class="words line3">I love you</div>
+        <div class="words line4">Will you be my girlfriend?</div>
+      </div>
+      <div class="hearts">
+        <div class="heart a1"></div>
+        <div class="heart a2"></div>
+        <div class="heart a3"></div>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+
+    <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()"
+      ontouchstart="moveButton()">No</button>
+    <script>
+      function moveButton() {
+        var noBtn = document.getElementById('noButton');
+
+        // Make sure styles don't push it further right
+        noBtn.style.position = 'fixed';
+        noBtn.style.margin = '0';
+        noBtn.style.transform = 'none'; // remove translateX etc if any
+
+        // Get button size based on actual rendered box
+        var btnRect = noBtn.getBoundingClientRect();
+        var btnWidth = btnRect.width;
+        var btnHeight = btnRect.height;
+
+        // More reliable viewport size (better than just window.innerWidth on mobile)
+        var viewportWidth = Math.max(
+          document.documentElement.clientWidth || 0,
+          window.innerWidth || 0
+        );
+        var viewportHeight = Math.max(
+          document.documentElement.clientHeight || 0,
+          window.innerHeight || 0
+        );
+
+        // 🔸 Your vertical logic (unchanged, just using viewportHeight)
+        var safeMinY = viewportHeight * 0.7;
+        var safeMaxY = viewportHeight - btnHeight - 20;
+
+        if (safeMinY > safeMaxY) {
+          safeMinY = viewportHeight - btnHeight - 80;
+        }
+
+        // 🔸 Horizontal: keep entire button inside
+        var paddingX = 8; // small side padding
+        var safeMinX = paddingX;
+        var safeMaxX = viewportWidth - btnWidth - paddingX;
+
+        if (safeMaxX < safeMinX) {
+          // extremely small screen edge case
+          safeMinX = 0;
+          safeMaxX = 0;
+        }
+
+        var x = Math.random() * (safeMaxX - safeMinX) + safeMinX;
+        var y = Math.random() * (safeMaxY - safeMinY) + safeMinY;
+
+        // Final hard clamp so it NEVER crosses right edge
+        var maxLeft = viewportWidth - btnWidth;
+        if (x < 0) x = 0;
+        if (x > maxLeft) x = maxLeft;
+
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+      }
+      function nextPage() {
+        window.location.href = 'yes.html';
+      }
+
+    </script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

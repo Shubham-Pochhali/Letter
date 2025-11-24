@@ -230,35 +230,6 @@ body {
   padding-bottom: 50px;
 }
 
-.reset {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.reset button {
-  font-weight: 800;
-  font-style: normal;
-  transition: all 0.1s linear;
-  background-color: transparent;
-  border: solid 2px #d9534f;
-  border-radius: 4px;
-  color: #d9534f;
-  display: inline-block;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin: 5px;
-  padding: 10px;
-  line-height: 1em;
-  text-decoration: none;
-  min-width: 120px;
-  cursor: pointer;
-}
-
-.reset button:hover {
-  background-color: #d9534f;
-  color: #fff;
-}
-
 @media (max-width: 420px) {
   .envlope-wrapper {
     width: 100%;
@@ -272,4 +243,59 @@ body {
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.btn {
+  background-color: #ff4d6d;
+  /* Cute pink/red */
+  color: #fff;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 2.5rem;
+  /* Significantly larger text */
+  padding: 20px 50px;
+  /* Large padding for big buttons */
+  border-radius: 60px;
+  /* Very round/pill shape */
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+  transition: all 0.3s ease;
+  font-family: "Dancing Script", cursive;
+  /* Match the theme */
+}
+
+#noButton {
+  max-width: calc(100vw - 16px);
+  /* button can never be wider than screen */
+}
+
+.btn:hover {
+  background-color: #d90429;
+  /* Darker shade on hover */
+  transform: scale(1.1);
+  /* Slight grow effect */
+  box-shadow: 0 6px 20px rgba(217, 4, 41, 0.6);
+}
+
+#noButton {
+  position: absolute;
+  margin-left: 300px;
+  /* Increased spacing for larger buttons */
+  transition: 0.5s;
+}
+
+#yesButton {
+  position: absolute;
+  margin-right: 300px;
+  /* Increased spacing for larger buttons */
 }

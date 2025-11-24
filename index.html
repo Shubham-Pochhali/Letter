@@ -2,39 +2,147 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Our little secret</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            color: #d9d9d9;
+            font-family: "Segoe UI", sans-serif;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .message p {
+            opacity: 0;
+            font-size: 1.35rem;
+            line-height: 1.5;
+            margin: 18px 0;
+            animation: fadeIn 3s forwards;
+            font-weight: 400;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* delays */
+        .message p:nth-child(1) {
+            animation-delay: 1s;
+        }
+
+        .message p:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .message p:nth-child(3) {
+            animation-delay: 5s;
+        }
+
+        .message p:nth-child(4) {
+            animation-delay: 7s;
+        }
+
+        .message p:nth-child(5) {
+            animation-delay: 9s;
+        }
+
+        .message p:nth-child(6) {
+            animation-delay: 11s;
+        }
+
+        .message p:nth-child(7) {
+            animation-delay: 13s;
+        }
+
+        .message p:nth-child(8) {
+            animation-delay: 15s;
+        }
+
+        .message p:nth-child(9) {
+            animation-delay: 17s;
+        }
+
+        .message p:nth-child(10) {
+            animation-delay: 19s;
+        }
+
+        /* BUTTON HIDDEN INITIALLY */
+        #changeBtn {
+            opacity: 0;
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 6px;
+            background: #ffffff15;
+            color: #fff;
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+            transition: opacity 1s ease;
+        }
+
+        #changeBtn:hover {
+            background: #ffffff25;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="envlope-wrapper">
-    <div id="envelope" class="close">
-      <div class="front flap"></div>
-      <div class="front pocket"></div>
-      <div class="letter">
-        <div class="words line1">To: dear</div>
-        <div class="words line2">cutie.</div>
-        <div class="words line3">I love you</div>
-        <div class="words line4">Will you be my girlfriend?</div>
-      </div>
-      <div class="hearts">
-        <div class="heart a1"></div>
-        <div class="heart a2"></div>
-        <div class="heart a3"></div>
-      </div>
-    </div>
-  </div>
-  <div class="reset">
-    <button id="open">Open</button>
-    <button id="reset">Close</button>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script.js"></script>
+    <!-- Background music -->
+    <audio id="bgm" autoplay loop>
+        <source src="audio/love story.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="message">
+        <p>There’s something about you.</p>
+        <p>The way you talk. The way you laugh.</p>
+        <p>The way you make things feel lighter.</p>
+        <p>You’re warm… in a way I didn’t expect.</p>
+        <p>I think of you more than I should.</p>
+        <p>And it feels good every single time.</p>
+        <p>You make my days softer.</p>
+        <p>And nights feel less lonely.</p>
+        <p>You matter to me more than you know.</p>
+        <p>And maybe… this is the start of something real.</p>
+    </div>
+
+    <!-- Button appears later -->
+    <button id="changeBtn" onclick="window.location='letter.html'">
+        Change the vibe
+    </button>
+
+    <script>
+        // Auto-play on mobile
+        document.addEventListener("click", () => {
+            document.getElementById("bgm").play().catch(() => { });
+        });
+
+        // Show button after last line fades in (19s + 3s fade = 22s)
+        setTimeout(() => {
+            document.getElementById("changeBtn").style.opacity = 1;
+        }, 22000);
+    </script>
+
 </body>
 
 </html>
