@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
-
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
+            height: auto;
             width: 100%;
             box-sizing: border-box;
             display: flex;
@@ -19,14 +19,59 @@
             color: #d9d9d9;
             font-family: "Segoe UI", sans-serif;
             text-align: center;
-            overflow: hidden;
+            overflow-y: auto;
+            /* Allow vertical scroll if text is too long */
             padding: 20px;
             flex-direction: column;
+            position: relative;
+            /* For fireflies */
+        }
+
+        /* FIREFLIES ANIMATION */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #ff00de;
+            /* Pinkish glow */
+            animation: fly 10s linear infinite;
+            opacity: 0;
+            z-index: 1;
+            /* Behind text but visible */
+            pointer-events: none;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) translateX(20vw);
+                opacity: 0;
+            }
+        }
+
+        .message {
+            z-index: 10;
+            /* Above fireflies */
         }
 
         .message p {
             opacity: 0;
-            font-size: 1.35rem;
+            font-size: 2rem;
+            /* Increased from 1.35rem */
             line-height: 1.5;
             margin: 18px 0;
             animation: fadeIn 3s forwards;
@@ -55,8 +100,9 @@
         }
 
         .start-btn {
-            font-size: 1.5rem;
-            padding: 15px 35px;
+            font-size: 2.5rem;
+            /* Increased from 1.5rem */
+            padding: 20px 45px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
@@ -146,8 +192,9 @@
         #changeBtn {
             opacity: 0;
             margin-top: 30px;
-            padding: 12px 25px;
-            font-size: 1.1rem;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            /* Increased from 1.1rem */
             border: none;
             border-radius: 6px;
             background: #ffffff15;
@@ -155,6 +202,7 @@
             backdrop-filter: blur(2px);
             cursor: pointer;
             transition: opacity 1s ease;
+            z-index: 10;
         }
 
         #changeBtn:hover {
@@ -163,7 +211,8 @@
 
         @media (max-width: 600px) {
             .message p {
-                font-size: 1.1rem;
+                font-size: 1.4rem;
+                /* Increased from 1.1rem */
                 margin: 12px 0;
             }
 
@@ -179,6 +228,9 @@
     <div id="overlay">
         <div class="start-btn">Tap to Start ❤️</div>
     </div>
+
+    <!-- Fireflies Container -->
+    <div id="fireflies"></div>
 
     <!-- Background music -->
     <audio id="bgm" loop>
@@ -207,6 +259,25 @@
         const overlay = document.getElementById('overlay');
         const bgm = document.getElementById('bgm');
         const changeBtn = document.getElementById('changeBtn');
+        const firefliesContainer = document.getElementById('fireflies');
+
+        // 1. Create Fireflies
+        for (let i = 0; i < 25; i++) {
+            let f = document.createElement('div');
+            f.className = 'firefly';
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            f.style.animationDelay = (Math.random() * 5) + 's';
+            firefliesContainer.appendChild(f);
+        }
+
+        // 2. Audio Limit Listener (14 seconds)
+        bgm.addEventListener('timeupdate', function () {
+            if (this.currentTime >= 14) {
+                this.pause();
+                this.currentTime = 0;
+            }
+        });
 
         overlay.addEventListener('click', () => {
             // Remove overlay

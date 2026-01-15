@@ -2,57 +2,158 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>She Said Yes</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>She Said Yes! ❤️</title>
+    <!-- Importing Fonts -->
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            width: 100%;
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap');
+
+        /* RESET & BODY */
+        * {
             box-sizing: border-box;
-            background: linear-gradient(135deg, #ffe9f0, #ffddea);
-            font-family: "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            overflow: hidden;
+            background: linear-gradient(120deg, #fff5f5 0%, #f5e3e6 100%);
+            /* Soft Cloud */
+            background-size: 200% 200%;
+            animation: gradientMove 10s ease infinite;
+            font-family: 'Montserrat', sans-serif;
             position: relative;
-            padding: 20px;
-            color: #a33357;
         }
 
-        h1 {
-            font-size: 2.7rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        p {
-            font-size: 1.3rem;
-            margin: 0;
-            opacity: 0.9;
-        }
-
-        /* Floating hearts */
-        .heart {
-            position: absolute;
-            color: #ff88ad;
-            font-size: 22px;
-            opacity: 0.8;
-            animation: float 6s linear infinite;
-            animation-fill-mode: backwards;
-        }
-
-        @keyframes float {
+        @keyframes gradientMove {
             0% {
-                transform: translateY(100vh) scale(1);
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
             }
 
             100% {
-                transform: translateY(-10vh) scale(1.4);
+                background-position: 0% 50%;
+            }
+        }
+
+        /* GLASS CARD */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            text-align: center;
+            max-width: 90%;
+            width: 500px;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: popIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* TEXT STYLING */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: #d6336c;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #721c24;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* BUTTON */
+        .btn {
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: #d6336c;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #ff6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(214, 51, 108, 0.3);
+        }
+
+        /* FLOATING HEARTS */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -10vh;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .container {
+                padding: 2rem;
             }
         }
     </style>
@@ -60,25 +161,44 @@
 
 <body>
 
-    <div>
-        <h1>She said yes! ❤️</h1>
-        <p>You just made me the happiest person today.</p>
-        <p>I promise you… this is just the beginning. 🥺✨</p>
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="container">
+        <h1>She said yes!</h1>
+        <p>You just made me the happiest person in the world.<br>I promise you this is just the begining ❤️</p>
+        <a href="index.html" class="btn">Replay Our Story</a>
     </div>
 
     <script>
-        // Generate floating hearts
-        for (let i = 0; i < 20; i++) {
-            let h = document.createElement("div");
-            h.className = "heart";
-            h.innerText = "❤";
-            h.style.left = Math.random() * 100 + "vw";
-            h.style.animationDelay = Math.random() * 5 + "s";
-            h.style.fontSize = 18 + Math.random() * 16 + "px";
-            document.body.appendChild(h);
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartSymbols = ['❤️', '💖', '💕', '🥰', '🌸'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+            // Randomize styling
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7s
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px'; // 20-40px
+
+            heartsContainer.appendChild(heart);
+
+            // Cleanup
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 300);
+
+        // Initial batch
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, Math.random() * 2000);
         }
     </script>
-
 </body>
 
 </html>
