@@ -10,7 +10,8 @@
         body {
             margin: 0;
             height: 100vh;
-            width: 100vw;
+            width: 100%;
+            box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,7 +30,63 @@
             line-height: 1.5;
             margin: 18px 0;
             animation: fadeIn 3s forwards;
+            animation-play-state: paused;
             font-weight: 400;
+        }
+
+        .started .message p {
+            animation-play-state: running;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+
+        .start-btn {
+            font-size: 1.5rem;
+            padding: 15px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 105, 180, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 105, 180, 0);
+            }
         }
 
         @keyframes fadeIn {
@@ -103,27 +160,42 @@
         #changeBtn:hover {
             background: #ffffff25;
         }
+
+        @media (max-width: 600px) {
+            .message p {
+                font-size: 1.1rem;
+                margin: 12px 0;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <div id="overlay">
+        <div class="start-btn">Tap to Start ❤️</div>
+    </div>
+
     <!-- Background music -->
-    <audio id="bgm" autoplay loop>
+    <audio id="bgm" loop>
         <source src="audio/love story.mp3" type="audio/mpeg">
     </audio>
 
     <div class="message">
-        <p>There’s something about you.</p>
-        <p>The way you talk. The way you laugh.</p>
-        <p>The way you make things feel lighter.</p>
-        <p>You’re warm… in a way I didn’t expect.</p>
-        <p>I think of you more than I should.</p>
-        <p>And it feels good every single time.</p>
-        <p>You make my days softer.</p>
-        <p>And nights feel less lonely.</p>
-        <p>You matter to me more than you know.</p>
-        <p>And maybe… this is the start of something real.</p>
+        <p>Good Morning , my precious love </p>
+        <p>You have this warmth in you that makes me feel loved</p>
+        <p>When I look into your eyes, I feel hypnotized.</p>
+        <p>When I hold your hand, It feels like I'm like floating</p>
+        <p>I feel that dreamy childlike happiness when I'm with you.</p>
+        <p>I all ears and all yours</p>
+        <p>No matter what, I will hear you, support you,</p>
+        <p>respect you and</p>
+        <p>take care of you</p>
+        <p>Amidst the chaos, I'll be your emotional safe haven</p>
     </div>
 
     <!-- Button appears later -->
@@ -132,15 +204,28 @@
     </button>
 
     <script>
-        // Auto-play on mobile
-        document.addEventListener("click", () => {
-            document.getElementById("bgm").play().catch(() => { });
-        });
+        const overlay = document.getElementById('overlay');
+        const bgm = document.getElementById('bgm');
+        const changeBtn = document.getElementById('changeBtn');
 
-        // Show button after last line fades in (19s + 3s fade = 22s)
-        setTimeout(() => {
-            document.getElementById("changeBtn").style.opacity = 1;
-        }, 22000);
+        overlay.addEventListener('click', () => {
+            // Remove overlay
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+
+            // Start music
+            bgm.play().catch(e => console.log("Audio play failed:", e));
+
+            // Start animations
+            document.body.classList.add('started');
+
+            // Timer for button (starts now)
+            setTimeout(() => {
+                changeBtn.style.opacity = 1;
+            }, 22000);
+        });
     </script>
 
 </body>

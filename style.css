@@ -13,6 +13,21 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 800px) {
+  #envelope {
+    margin-top: 200px;
+    /* Reduce top spacing on smaller screens */
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  #envelope {
+    margin-top: 100px;
+    /* Even less on mobile */
+  }
+}
+
 .front {
   position: absolute;
   width: 0;
@@ -225,77 +240,101 @@ body {
   background-color: #f0e6f6;
 }
 
+/* Scaling handled by JS now */
 .envlope-wrapper {
   height: auto;
   padding-bottom: 50px;
-}
-
-@media (max-width: 420px) {
-  .envlope-wrapper {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  #envelope {
-    transform: scale(0.4);
-    left: 50%;
-    margin-left: -400px;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+  /* Center the envelope wrapper */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
+  /* Let JS scale handle it */
 }
 
 .buttons {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-left: 20px;
+  /* Use gap for spacing instead of margins */
+  gap: 2rem;
+  width: 100%;
+  position: relative;
+  /* Ensure buttons are below envelope */
+  z-index: 10;
 }
 
 .btn {
   background-color: #ff4d6d;
-  /* Cute pink/red */
   color: #fff;
   font-weight: 800;
-  font-style: normal;
-  font-size: 2.5rem;
-  /* Significantly larger text */
-  padding: 20px 50px;
-  /* Large padding for big buttons */
+  font-size: 2rem;
+  /* Slightly smaller base size for better mobile fit */
+  padding: 15px 40px;
   border-radius: 60px;
-  /* Very round/pill shape */
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
   transition: all 0.3s ease;
   font-family: "Dancing Script", cursive;
-  /* Match the theme */
+  white-space: nowrap;
 }
 
 #noButton {
-  max-width: calc(100vw - 16px);
-  /* button can never be wider than screen */
+  max-width: 100%;
 }
 
 .btn:hover {
   background-color: #d90429;
-  /* Darker shade on hover */
   transform: scale(1.1);
-  /* Slight grow effect */
   box-shadow: 0 6px 20px rgba(217, 4, 41, 0.6);
 }
 
+/* Remove absolute positioning default for initial layout */
+#yesButton,
 #noButton {
-  position: absolute;
-  margin-left: 300px;
-  /* Increased spacing for larger buttons */
-  transition: 0.5s;
+  position: relative;
+  margin: 0;
+  /* Reset margins */
 }
 
-#yesButton {
+/* "No" button will become fixed/absolute via JS on interaction */
+#noButton.moving {
+  position: fixed;
+}
+
+/* Click Here Sign */
+.click-sign {
   position: absolute;
-  margin-right: 300px;
-  /* Increased spacing for larger buttons */
+  top: -60px;
+  /* Position above container */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #482b2b;
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  /* Ensure it's on top */
+  pointer-events: none;
+  /* Let clicks pass through to envelope */
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    top: -60px;
+  }
+
+  to {
+    top: -70px;
+  }
+}
+
+/* Hide sign when envelope is open */
+.open .click-sign {
+  display: none;
 }
